@@ -1,0 +1,12 @@
+# Changes here will be overwritten by Copier; never edit it by hand.
+_commit: v0.3.0
+_src_path: git@github.com:keltzbm/templates.git
+author_email: keltzbm@icloud.com
+author_name: Brandon M. Keltz
+cli: false
+description: ''
+lang: python
+license: AGPL-3.0-or-later
+name: riffletcg-data
+python: '3.15'
+year: '2026'

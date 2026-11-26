@@ -1,0 +1,37 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Tooling caches & reports
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+coverage.xml
+htmlcov/
+.ipynb_checkpoints/
+
+# Editors
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets — never commit
+.env
+.env.*
+
+# Data & output: the folder is tracked, its contents aren't.
+# Commit a small reference file on purpose with `git add -f data/<file>`.
+data/*
+!data/.gitkeep
+out/
+*.log

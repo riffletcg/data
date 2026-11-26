@@ -1,0 +1,68 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "riffletcg-data"
+dynamic = ["version"]
+description = ""
+authors = [{ name = "Brandon M. Keltz", email = "keltzbm@icloud.com" }]
+readme = "README.md"
+license = "AGPL-3.0-or-later"
+license-files = ["LICENSE"]
+requires-python = ">=3.15"
+dependencies = []
+
+[project.scripts]
+riffletcg-data = "riffletcg_data.main:main"
+
+[dependency-groups]
+dev = [
+    "mypy",
+    "pre-commit",
+    "pytest",
+    "pytest-cov",
+    "ruff",
+]
+
+[tool.hatch.version]
+path = "src/riffletcg_data/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/riffletcg_data"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["--import-mode=importlib", "-ra", "--strict-markers"]
+
+[tool.coverage.run]
+source = ["riffletcg_data"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+
+[tool.mypy]
+files = ["src"]
+strict = true
+
+[tool.ruff]
+line-length = 88
+target-version = "py315"
+
+[tool.ruff.lint]
+extend-select = ["F", "E", "W", "I", "UP", "B", "SIM", "D"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.isort]
+known-first-party = ["riffletcg_data"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["D"]
+
+[tool.ruff.format]
+quote-style = "double"
+docstring-code-format = true
