@@ -1,10 +1,26 @@
-"""Paths and settings shared across riffletcg-data.
+"""Paths shared across riffletcg-data."""
 
-PROJECT_ROOT assumes an editable install from the repo (what `uv sync` does).
-"""
-
+import os
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
-DATA_DIR = PROJECT_ROOT / "data"
-OUTPUT_DIR = PROJECT_ROOT / "out"
+
+def folder(override: str, xdg: str, default: str) -> Path:
+    """Return one of Riffle's folders, as the environment sets it.
+
+    Args:
+        override: The variable that names the folder outright, such as
+            ``RIFFLETCG_DATA``.
+        xdg: The XDG variable that names the base folder, such as
+            ``XDG_DATA_HOME``.
+        default: The base folder under home when ``xdg`` is unset, such as
+            ``.local/share``.
+
+    Returns:
+        The override if it is set, else ``riffletcg/data`` under the base folder.
+    """
+    base = Path(os.environ.get(xdg) or Path.home() / default)
+    return Path(os.environ.get(override) or base / "riffletcg" / "data")
+
+
+CACHE_DIR = folder("RIFFLETCG_CACHE", "XDG_CACHE_HOME", ".cache")
+DATA_DIR = folder("RIFFLETCG_DATA", "XDG_DATA_HOME", ".local/share")
