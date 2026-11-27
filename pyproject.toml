@@ -38,7 +38,8 @@ packages = ["src/riffletcg_data"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = ["--import-mode=importlib", "-ra", "--strict-markers"]
+addopts = ["--import-mode=importlib", "-qq", "--no-header", "--no-summary", "--strict-markers"]
+console_output_style = "classic"
 
 [tool.coverage.run]
 source = ["riffletcg_data"]
